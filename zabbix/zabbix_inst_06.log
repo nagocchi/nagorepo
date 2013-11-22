@@ -51,5 +51,8 @@ Complete!
 [root@localhost ~]# rpm -qa | grep zabbix-agent
 zabbix-agent-1.8.16-1.el6.JP.i686
 [root@localhost ~]# 
+[nago@localhost ~]# /etc/init.d/zabbix-agent start
+Starting zabbix agent:                                     [  OK  ]
+[nago@localhost ~]# 
 
 
