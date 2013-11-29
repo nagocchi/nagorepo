@@ -1,0 +1,17 @@
+apache		yum search apache	sudo yum install httpd.i686
+enginx		yum search nginx	sudo yum install nginx.i686
+jboss
+tomcat		yum search tomcat	sudo yum install tomcat6.noarch	sudo yum install tomcat7.noarch
+mysql		yum search mysql	sudo yum install mysql mysql-server
+PostgreSQL	yum search postgre	sudo yum install postgresql9.i686
+mongodb		yum search mongo	sudo yum install hunspell-mn.noarch Å© âˆÇµÇ¢ÅB
+postfix		yum search postfix	sudo yum install postfix.i686
+dovecot		yum search dovecot	sudo yum install dovecot.i686
+fluentd
+rabbitmq	yum search rabbimq	sudo yum install librabbitmq.i686
+squid
+zabbix
+monit		yum search monit	sodo yum install monit.i686
+openAM
+
+

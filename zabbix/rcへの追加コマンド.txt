@@ -1,0 +1,25 @@
+#起動コマンド
+sudo /etc/init.d/mysqld start
+sudo /etc/init.d/zabbix-server start
+sudo /etc/init.d/httpd start
+sudo /etc/init.d/zabbix-agent start
+
+#rcへの追加コマンド
+#起動(マルチモード)
+ln -s /etc/init.d/mysqld        /etc/rc.d/rc5.d/S31mysqld
+ln -s /etc/init.d/zabbix-server /etc/rc.d/rc5.d/S32zabbix-server
+ln -s /etc/init.d/httpd         /etc/rc.d/rc5.d/S33httpd
+ln -s /etc/init.d/zabbix-agent  /etc/rc.d/rc5.d/S34zabbix-agent 
+
+#停止
+ln -s /etc/init.d/mysqld        /etc/rc.d/rc0.d/K31mysqld
+ln -s /etc/init.d/zabbix-server /etc/rc.d/rc0.d/K32zabbix-server
+ln -s /etc/init.d/httpd         /etc/rc.d/rc0.d/K33httpd
+ln -s /etc/init.d/zabbix-agent  /etc/rc.d/rc0.d/K34zabbix-agent 
+
+#再起動
+ln -s /etc/init.d/mysqld        /etc/rc.d/rc6.d/K31mysqld
+ln -s /etc/init.d/zabbix-server /etc/rc.d/rc6.d/K32zabbix-server
+ln -s /etc/init.d/httpd         /etc/rc.d/rc6.d/K33httpd
+ln -s /etc/init.d/zabbix-agent  /etc/rc.d/rc6.d/K34zabbix-agent 
+
