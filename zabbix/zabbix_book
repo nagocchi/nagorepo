@@ -61,3 +61,22 @@ sudo service zabbix-server start
 
 # zabbix-server status check
 sudo service zabbix-server status
+
+# apache & php install
+sudo yum install httpd php php-gd php-bcmath php-mysql php-mbstring php-xml
+
+# apache start
+sudo service httpd start
+sudo chkconfig httpd on
+
+# web interface install
+sudo yum install zabbix-web zabbix-web-mysql
+
+# apache restart
+sudo service httpd restart
+
+# del zabbix.conf.php for web-installer start
+sudo rm /etc/zabbix/zabbix.conf.php
+
+# web-interface-access (= web-installer start)
+http://172.16.1.10
