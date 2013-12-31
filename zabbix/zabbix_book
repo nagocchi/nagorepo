@@ -1,0 +1,38 @@
+centos
+
+# add zabbix-repository to yum
+sudo rpm -ivh http://www.zabbix.jp/binaries/relatedpkgs/rhel5/x86_64/zabbix-jp-release-5-3.noarch.rpm
+
+# zabbix rom 1.6 to 1.8
+sudo alternatives --config zabbix-jp-release
+
+# delete yum repository cache
+sudo yum clean all
+
+# show zabbix list
+sudo yum search zabbix
+
+# if command fail
+sudo yum-config-manager --disable zabbix-jp-relatedpkgs
+
+# mysql-server install
+sudo yum install mysql-server
+
+# update /etc/my.cnf
+sudo vi /etc/my.cnf
+# under 6 row add
+default-character-set=utf8
+skip-character-set-client-handshake
+innodb_file_per_table
+innodb_buffer_pool_size=64M
+innodb_log_file_size=16M
+innodb_log_files_in_group=2
+
+# ready mysql
+sudo service mysqld start
+sudo mysql -uroot
+mysql> create database zabbix;
+mysql> grant all privileges on zabbix.* to zabbix@localhost identified by 'zabbixpassword';
+mysql> flush privileges;
+mysql> exit
+sudo chkconfig mysqld on
