@@ -80,3 +80,35 @@ sudo rm /etc/zabbix/zabbix.conf.php
 
 # web-interface-access (= web-installer start)
 http://172.16.1.10
+⇒ http://localhost.localdomain/zabbix/
+
+1.Next
+2.check [I agree] and Next
+3.check all OK and Next
+4.zabbix/zabbix/zabbixpassword and push [Test connection] and Next
+5.host:localhost,port:10051,name:zabbix and Next
+6.check and Next
+7.sudo chmod 777 /etc/zabbix 
+  => push save configuration file 
+  => cp ~/downloads/zabbix.conf.php /etc/zabbix/zabbix.conf.php
+  => retry button => Next
+  sudo chmod 755 /etc/zabbix
+  sudo chown root.root /etc/zabbix/zabbix.conf.php
+  sudo chmod 644 /etc/zabbix/zabbix.conf.php
+8.Finishi
+  
+# zabbix-agent install
+sudo yum install zabbix zabbix-agent
+
+# zabbix-agentd setting
+sudo vi /etc/zabbix/zabbix_agentd.conf
+
+Server=localhost.localdomain
+Hostname=localhost.localdomain
+ListenIP=127.0.0.1
+
+# zabbix-agent start
+sudo service zabbix-agent start
+
+# zabbix-agent status
+sudo service zabbix-agent status
