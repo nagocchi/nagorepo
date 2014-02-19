@@ -1,0 +1,227 @@
+a:
+ b:
+  c: 10
+  d: 
+   - 3000.0
+   - 1.73
+~              
+
+###############################
+[nago@nago01 nago]$ irb
+1.9.3-p484 :001 > require 'yaml'
+ => true 
+1.9.3-p484 :003 > yaml = YAML.load_file("nago.yaml")
+ => {"a"=>{"b"=>{"c"=>"10 / 2", "d"=>"9  / 4"}}} 
+1.9.3-p484 :004 > yaml["a"]
+ => {"b"=>{"c"=>"10 / 2", "d"=>"9  / 4"}} 
+1.9.3-p484 :005 > yaml["a"][b]
+NameError: undefined local variable or method `b' for main:Object
+	from (irb):5
+	from /home/nago/.rvm/rubies/ruby-1.9.3-p484/bin/irb:12:in `<main>'
+1.9.3-p484 :006 > yaml["a"]["b"]
+ => {"c"=>"10 / 2", "d"=>"9  / 4"} 
+1.9.3-p484 :007 > nago = yaml["a"]["b"]
+ => {"c"=>"10 / 2", "d"=>"9  / 4"} 
+1.9.3-p484 :008 > nago
+ => {"c"=>"10 / 2", "d"=>"9  / 4"} 
+1.9.3-p484 :009 > p nago
+{"c"=>"10 / 2", "d"=>"9  / 4"}
+ => {"c"=>"10 / 2", "d"=>"9  / 4"} 
+1.9.3-p484 :010 > nago["c"]
+ => "10 / 2" 
+1.9.3-p484 :011 > nago["c"].to_i
+ => 10 
+1.9.3-p484 :012 > nago["c"].to_i
+ => 10 
+1.9.3-p484 :013 > nago["c"].to_i
+ => 10 
+1.9.3-p484 :014 > nago["c"].to_i
+ => 10 
+1.9.3-p484 :015 > yaml = YAML.load_file("nago.yaml")
+ => {"a"=>{"b"=>{"c"=>"10/2", "d"=>"9/4"}}} 
+1.9.3-p484 :016 > nago = yaml["a"]["b"]
+ => {"c"=>"10/2", "d"=>"9/4"} 
+1.9.3-p484 :017 > nago["c"]
+ => "10/2" 
+1.9.3-p484 :018 > nago["c"].to_i
+ => 10 
+1.9.3-p484 :019 > nago["c"]
+ => "10/2" 
+1.9.3-p484 :020 > nago["c"].array
+NoMethodError: undefined method `array' for "10/2":String
+	from (irb):20
+	from /home/nago/.rvm/rubies/ruby-1.9.3-p484/bin/irb:12:in `<main>'
+1.9.3-p484 :021 > nago["c"].to_a
+NoMethodError: undefined method `to_a' for "10/2":String
+	from (irb):21
+	from /home/nago/.rvm/rubies/ruby-1.9.3-p484/bin/irb:12:in `<main>'
+1.9.3-p484 :022 > nago["c"].to_i
+ => 10 
+1.9.3-p484 :023 > yaml = YAML.load_file("nago.yaml")
+ => {"a"=>{"b"=>{"c"=>"=10/2", "d"=>"=9/4"}}} 
+1.9.3-p484 :024 > nago["c"]
+ => "10/2" 
+1.9.3-p484 :025 > yaml = YAML.load_file("nago.yaml")
+ => {"a"=>{"b"=>{"c"=>"=10/2", "d"=>"=9/4"}}} 
+1.9.3-p484 :026 > nago = yaml["a"]["b"]
+ => {"c"=>"=10/2", "d"=>"=9/4"} 
+1.9.3-p484 :027 > nago["c"]
+ => "=10/2" 
+1.9.3-p484 :028 > nago["c"].to_i
+ => 0 
+1.9.3-p484 :029 > nago["d"].to_i
+ => 0 
+1.9.3-p484 :030 > nago["d"]
+ => "=9/4" 
+1.9.3-p484 :031 > nago["d"]
+ => "=9/4" 
+1.9.3-p484 :032 > yaml = YAML.load_file("nago.yaml")
+ => {"a"=>{"b"=>{"c"=>"10/2", "d"=>"9/4"}}} 
+1.9.3-p484 :033 > nago = yaml["a"]["b"]
+ => {"c"=>"10/2", "d"=>"9/4"} 
+1.9.3-p484 :034 > nago["d"]
+ => "9/4" 
+1.9.3-p484 :035 > yaml = YAML.load_file("nago.yaml")
+ => {"a"=>{"b"=>{"c"=>10, "d"=>{"d1"=>9, "d2"=>4}}}} 
+1.9.3-p484 :036 > nago = yaml["a"]["b"]
+ => {"c"=>10, "d"=>{"d1"=>9, "d2"=>4}} 
+1.9.3-p484 :037 > nago
+ => {"c"=>10, "d"=>{"d1"=>9, "d2"=>4}} 
+1.9.3-p484 :038 > nago["c"]
+ => 10 
+1.9.3-p484 :039 > nago["c"].class
+ => Fixnum 
+1.9.3-p484 :040 > nago["d"].class
+ => Hash 
+1.9.3-p484 :041 > yaml = YAML.load_file("nago.yaml")
+ => {"a"=>{"b"=>{"c"=>10, "d"=>"-3000.0 -1.73"}}} 
+1.9.3-p484 :042 > nago = yaml["a"]["b"]
+ => {"c"=>10, "d"=>"-3000.0 -1.73"} 
+1.9.3-p484 :043 > nago["c"].class
+ => Fixnum 
+1.9.3-p484 :044 > nago["d"].class
+ => String 
+1.9.3-p484 :045 > yaml = YAML.load_file("nago.yaml")
+Psych::SyntaxError: (nago.yaml): block sequence entries are not allowed in this context at line 4 column 6
+	from /home/nago/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/psych.rb:203:in `parse'
+	from /home/nago/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/psych.rb:203:in `parse_stream'
+	from /home/nago/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/psych.rb:151:in `parse'
+	from /home/nago/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/psych.rb:127:in `load'
+	from /home/nago/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/psych.rb:297:in `block in load_file'
+	from /home/nago/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/psych.rb:297:in `open'
+	from /home/nago/.rvm/rubies/ruby-1.9.3-p484/lib/ruby/1.9.1/psych.rb:297:in `load_file'
+	from (irb):45
+	from /home/nago/.rvm/rubies/ruby-1.9.3-p484/bin/irb:12:in `<main>'
+1.9.3-p484 :046 > yaml = YAML.load_file("nago.yaml")
+ => {"a"=>{"b"=>{"c"=>10, "d"=>[3000.0, 1.73]}}} 
+1.9.3-p484 :047 > nago["c"].class
+ => Fixnum 
+1.9.3-p484 :048 > nago["d"].class
+ => String 
+1.9.3-p484 :049 > nago = yaml["a"]["b"]
+ => {"c"=>10, "d"=>[3000.0, 1.73]} 
+1.9.3-p484 :050 > nago["c"].class
+ => Fixnum 
+1.9.3-p484 :051 > nago["d"].class
+ => Array 
+1.9.3-p484 :052 > if nago["d"].class = "Array"
+1.9.3-p484 :053?>   then
+1.9.3-p484 :054 >     p nago
+1.9.3-p484 :055?>   else
+1.9.3-p484 :056 >     p mako
+1.9.3-p484 :057?>   fi
+1.9.3-p484 :058?>   end
+NoMethodError: undefined method `class=' for [3000.0, 1.73]:Array
+	from (irb):52
+	from /home/nago/.rvm/rubies/ruby-1.9.3-p484/bin/irb:12:in `<main>'
+1.9.3-p484 :059 > if nago["d"].class = "Array"
+1.9.3-p484 :060?>   then
+1.9.3-p484 :061 >     p nago
+1.9.3-p484 :062?>   else
+1.9.3-p484 :063 >     p mako
+1.9.3-p484 :064?>   end
+NoMethodError: undefined method `class=' for [3000.0, 1.73]:Array
+	from (irb):59
+	from /home/nago/.rvm/rubies/ruby-1.9.3-p484/bin/irb:12:in `<main>'
+1.9.3-p484 :065 > if nago["d"].class = "Array"
+1.9.3-p484 :066?>   p nago
+1.9.3-p484 :067?>   else
+1.9.3-p484 :068 >     p mako
+1.9.3-p484 :069?>   end
+NoMethodError: undefined method `class=' for [3000.0, 1.73]:Array
+	from (irb):65
+	from /home/nago/.rvm/rubies/ruby-1.9.3-p484/bin/irb:12:in `<main>'
+1.9.3-p484 :070 > if nago["d"].class = []
+1.9.3-p484 :071?>   p nago
+1.9.3-p484 :072?>   else
+1.9.3-p484 :073 >     p mako
+1.9.3-p484 :074?>   end
+NoMethodError: undefined method `class=' for [3000.0, 1.73]:Array
+	from (irb):70
+	from /home/nago/.rvm/rubies/ruby-1.9.3-p484/bin/irb:12:in `<main>'
+1.9.3-p484 :075 > nago["d"].class
+ => Array 
+1.9.3-p484 :076 > if nago["d"].class == []
+1.9.3-p484 :077?>   p nago
+1.9.3-p484 :078?>   else
+1.9.3-p484 :079 >     p mako
+1.9.3-p484 :080?>   end
+NameError: undefined local variable or method `mako' for main:Object
+	from (irb):79
+	from /home/nago/.rvm/rubies/ruby-1.9.3-p484/bin/irb:12:in `<main>'
+1.9.3-p484 :081 > if nago["d"].class == []
+1.9.3-p484 :082?>   p "nago"
+1.9.3-p484 :083?>   else
+1.9.3-p484 :084 >     p "mako"
+1.9.3-p484 :085?>   end
+"mako"
+ => "mako" 
+1.9.3-p484 :086 > if nago["d"].class == [] then
+1.9.3-p484 :087 >     p "nago"
+1.9.3-p484 :088?>   else
+1.9.3-p484 :089 >     p "mako"
+1.9.3-p484 :090?>   end
+"mako"
+ => "mako" 
+1.9.3-p484 :091 > nago["d"]
+ => [3000.0, 1.73] 
+1.9.3-p484 :092 > nago["d"].calss
+NoMethodError: undefined method `calss' for [3000.0, 1.73]:Array
+	from (irb):92
+	from /home/nago/.rvm/rubies/ruby-1.9.3-p484/bin/irb:12:in `<main>'
+1.9.3-p484 :093 > nago["d"].class
+ => Array 
+1.9.3-p484 :094 > nago["d"].class
+ => Array 
+1.9.3-p484 :095 > if nago["d"].class == "Array" then
+1.9.3-p484 :096 >     p "nago"
+1.9.3-p484 :097?>   else
+1.9.3-p484 :098 >     p "mako"
+1.9.3-p484 :099?>   end
+"mako"
+ => "mako" 
+1.9.3-p484 :100 > if nago["d"].class == [] then
+1.9.3-p484 :101 >     nago["d"].class
+1.9.3-p484 :102?>   
+1.9.3-p484 :103 >     
+1.9.3-p484 :104 >     end
+ => nil 
+1.9.3-p484 :105 > [].class
+ => Array 
+1.9.3-p484 :106 > if nago["d"].class == [].class then
+1.9.3-p484 :107 >     p "nago"
+1.9.3-p484 :108?>   else
+1.9.3-p484 :109 >     p "mako"
+1.9.3-p484 :110?>   end
+"nago"
+ => "nago" 
+1.9.3-p484 :111 > if nago["d"].class == [].class then
+1.9.3-p484 :112 >     end
+ => nil 
+1.9.3-p484 :113 > nago["d"][0]
+ => 3000.0 
+1.9.3-p484 :114 > nago["d"][1]
+ => 1.73 
+1.9.3-p484 :115 > nago["d"][0] / nago["d"][1]
+ => 1734.1040462427745 
+1.9.3-p484 :116 > 
