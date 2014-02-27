@@ -14,3 +14,6 @@ rpm -qi "gpg-pubkey-" |grep Summary
 
 #install
 yum install jenkins
+
+# java
+yum install java-1.7.0-openjdk
