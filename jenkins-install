@@ -1,0 +1,16 @@
+# root user
+#repo download
+wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+
+#
+ls -l /etc/yum.repos.d/jenkins.repo
+cat /etc/yum.repos.d/jenkins.repo
+
+#shomeisho import
+rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
+
+#kakunin
+rpm -qi "gpg-pubkey-" |grep Summary
+
+#install
+yum install jenkins
