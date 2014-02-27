@@ -1,0 +1,84 @@
+[nago@localhost Desktop]$ su -
+Password: 
+[root@localhost ~]# 
+[root@localhost ~]# wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+--2014-02-27 13:34:04--  http://pkg.jenkins-ci.org/redhat/jenkins.repo
+Resolving pkg.jenkins-ci.org... 199.193.196.24
+Connecting to pkg.jenkins-ci.org|199.193.196.24|:80... connected.
+HTTP request sent, awaiting response... 200 OK
+Length: 75 [text/plain]
+Saving to: “/etc/yum.repos.d/jenkins.repo”
+
+100%[======================================>] 75          --.-K/s   in 0s      
+
+2014-02-27 13:34:05 (6.73 MB/s) - “/etc/yum.repos.d/jenkins.repo” saved [75/75]
+
+[root@localhost ~]# ls -l /etc/yum.repos.d/jenkins.repo
+-rw-r--r--. 1 root root 75 Feb 24 21:01 /etc/yum.repos.d/jenkins.repo
+[root@localhost ~]# cat /etc/yum.repos.d/jenkins.repo
+[jenkins]
+name=Jenkins
+baseurl=http://pkg.jenkins-ci.org/redhat
+gpgcheck=1
+[root@localhost ~]# rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
+[root@localhost ~]# rpm -qi "gpg-pubkey-" |grep Summary
+Summary     : gpg(Kohsuke Kawaguchi <kohsuke.kawaguchi@sun.com>)
+[root@localhost ~]# yum install jenkins
+Loaded plugins: fastestmirror, refresh-packagekit, security
+Determining fastest mirrors
+ * base: ftp.nara.wide.ad.jp
+ * extras: ftp.nara.wide.ad.jp
+ * updates: ftp.nara.wide.ad.jp
+jenkins                                                  |  951 B     00:00     
+jenkins/primary                                          |  24 kB     00:00     
+jenkins                                                                 225/225
+Setting up Install Process
+Resolving Dependencies
+--> Running transaction check
+---> Package jenkins.noarch 0:1.552-1.1 will be installed
+--> Finished Dependency Resolution
+
+Dependencies Resolved
+
+================================================================================
+ Package           Arch             Version             Repository         Size
+================================================================================
+Installing:
+ jenkins           noarch           1.552-1.1           jenkins            58 M
+
+Transaction Summary
+================================================================================
+Install       1 Package(s)
+
+Total download size: 58 M
+Installed size: 64 M
+Is this ok [y/N]: y
+Downloading Packages:
+jenkins-1.552-1.1.noarch.rpm                             |  58 MB     19:01     
+Running rpm_check_debug
+Running Transaction Test
+Transaction Test Succeeded
+Running Transaction
+  Installing : jenkins-1.552-1.1.noarch                                     1/1 
+warning: /etc/yum.repos.d/jenkins.repo created as /etc/yum.repos.d/jenkins.repo.rpmnew
+  Verifying  : jenkins-1.552-1.1.noarch                                     1/1 
+
+Installed:
+  jenkins.noarch 0:1.552-1.1                                                    
+
+Complete!
+[root@localhost ~]# which jenkins
+/usr/bin/which: no jenkins in (/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin)
+[root@localhost ~]# cd /etc/init.d
+[root@localhost init.d]# ls -l jenkins
+-rwxr-xr-x. 1 root root 5985 Feb 24 21:00 jenkins
+[root@localhost init.d]# ./jenkins status
+jenkins is stopped
+[root@localhost init.d]# ./jenkins start
+Starting Jenkins bash: /usr/bin/java: No such file or directory
+                                                           [FAILED]
+[root@localhost init.d]# 
+
+
+
+
