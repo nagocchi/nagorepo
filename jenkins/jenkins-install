@@ -1,19 +1,46 @@
-# root user
-#repo download
-wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+うまくいかない場合、以下を確認
+１．/etc/sudoers への設定
+２．IPV6の設定無効化
+３．ゲストOS再起動
+などなど。。。
+※ローカル環境構築手順参考
 
-#
+#########################################################
+
+※全て、rootユーザーで実施
+
+# 環境変数の設定
+export http_proxy=http://<singleuserid>:<password>@proxy.ricoh.co.jp:8080
+export proxy=http://<singleuserid>:<password>@proxy.ricoh.co.jp:8080
+
+#jenkins.repo ダウンロード (しばらくrootで）
+wget -O /etc/yum.repos.d/jenkins.repo http://pkg.jenkins-ci.org/redhat/jenkins.repo
+ ⇒R-WAN外だと、「wget -O ～」で実行可能だったが、R-WAN内だとプロキシ絡みのエラーになるので、
+   http://pkg.jenkins-ci.org/redhat/jenkins.repo の内容を、/etc/yum.repos.d/jenkins.repo に直接書いた。
+
+#jenkins.repoファイルの確認
 ls -l /etc/yum.repos.d/jenkins.repo
 cat /etc/yum.repos.d/jenkins.repo
 
-#shomeisho import
+#証明書 インポート
 rpm --import http://pkg.jenkins-ci.org/redhat/jenkins-ci.org.key
 
-#kakunin
+#インポートの確認
 rpm -qi "gpg-pubkey-" |grep Summary
 
-#install
+#/etc/yum.confへのプロキシ設定
+vi /etc/yum.conf
+proxy=http://<singleuserid>:<password>@proxy.ricoh.co.jp:8080
+
+#Jenkinsのインストール
 yum install jenkins
 
-# java
+#javaのインストール
 yum install java-1.7.0-openjdk
+
+#Jenkins起動
+/etc/init.d/jenkins start
+
+#Jenkinsへのアクセス
+http://localhost.localdomain:8080
+
